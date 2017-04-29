@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Wine } from './../wine';
+import { WineService } from './../wine.service';
 
 @Component({
   selector: 'app-wine-list',
@@ -6,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wine-list.component.css']
 })
 export class WineListComponent implements OnInit {
+  wines : Wine[];
 
-  constructor() { }
+  constructor(
+    private wineService : WineService
+  ) { }
 
-  title = "Vinlista"
-  
-  ngOnInit() {
 
+  getWines(): void {
+    this.wineService.getWines().then(wines => this.wines = wines);
+  }
+  ngOnInit(): void {
+    this.getWines();
   }
 
 }

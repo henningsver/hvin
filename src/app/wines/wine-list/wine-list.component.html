@@ -1,5 +1,32 @@
-<div class="row">
-  <div class="col-md-5">
-    <h2>{{title}}</h2>
-  </div>
-</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th class="hidden-sm-down">Nr</th>
+      <th>Namn</th>
+      <th>Årgång</th>
+      <th>Land</th>
+      <th>Region</th>
+      <th>Sub-Region</th>
+      <th>Appellation</th>
+      <th>Pris</th>
+      <th>Betyg</th>
+      <th>Kvalitet</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let wine of wines">
+        <td>{{wine._id}}</td>
+        <td class="hidden-sm-down">{{wine.systembolaget?.nr}}</td>
+        <td>{{wine.namn}}</td>
+        <td>{{wine.argang}}</td>
+        <td>{{wine.land}}</td>
+        <td>{{wine.region}}</td>
+        <td>{{wine.subRegion}}</td>
+        <td>{{wine.appellation}}</td>
+        <td>{{wine.pris}}</td>
+        <td>{{wine.aov?.betyg}}</td>
+        <td>{{wine.aov?.kvalitet?.kvalitet}}</td>
+      </tr>
+    </tbody>
+</table>
