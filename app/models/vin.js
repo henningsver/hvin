@@ -14,6 +14,12 @@ var WineSchema   = new Schema({
   pris: Number,
   inlagd: String,
   bestalld: String,
+  egnaBetyg: {
+    antal: Number,
+    max: Number,
+    min: Number,
+    medel: Number
+  },
   aov: {
     betyg: String,
     kvalitet: {

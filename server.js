@@ -16,6 +16,9 @@ app.listen(app.get('port'), function() {
 });
 
 
+app.on('listening', function () {
+    console.log("App is now started");
+});
 
 
 // configure app to use bodyParser()
@@ -39,6 +42,9 @@ function handleError(res, reason, message, code) {
 
 var viner = require('./app/routes/viner.js');
 app.use('/api/viner', viner);
+
+var vinMat = require('./app/routes/vinMat.js');
+app.use('/api/vinMat', vinMat);
 
 var counters = require('./app/routes/counters.js');
 app.use('/api/counters', counters);

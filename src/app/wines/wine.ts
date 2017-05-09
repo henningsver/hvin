@@ -11,6 +11,12 @@ export class Wine {
   pris: number;
   inlagd: string;
   bestalld: string;
+  egnaBetyg: {
+    antal: number;
+    max: number;
+    min: number;
+    medel: number;
+  }
   aov: {
     betyg: string;
     kvalitet: {

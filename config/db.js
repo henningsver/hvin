@@ -33,4 +33,5 @@ process.on('SIGINT', function() {
 
 // BRING IN YOUR SCHEMAS & MODELS // For example
 require('./../app/models/vin');
+require('./../app/models/vinMat');
 require('./../app/models/counter');
