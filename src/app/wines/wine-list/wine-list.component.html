@@ -16,7 +16,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let wine of wines"
-      (click)="onSelect(wine)">
+      (click)="onSelect(wine)"
+      (click)="open(content)">
         <td>{{wine._id}}</td>
         <td class="hidden-sm-down">{{wine.systembolaget?.nr}}</td>
         <td>{{wine.namn}}</td>
@@ -31,18 +32,61 @@
       </tr>
     </tbody>
 </table>
-<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Child modal</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        I am a child modal, opened from parent component!
-      </div>
-    </div>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Vin id: {{selectedWine._id}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <label for="namn">Namn</label>
+              <input type="text" class="form-control" id="namn" aria-describedby="namnHelp" placeholder="Namn" value="{{selectedWine.namn}}">
+              <small id="namnHelp" class="form-text text-muted">Ange namnet på vinet</small>
+            </div>
+            <div class="col">
+              <label for="argang">Årgång</label>
+              <input type="text" class="form-control" id="argang" placeholder="Årgång" value="{{selectedWine.argang}}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="pris">Pris</label>
+              <input type="number" class="form-control" id="pris" placeholder="Pris" value="{{selectedWine.pris}}">
+            </div>
+            <div class="col">
+              <label for="typ">Typ</label>
+              <input type="text" class="form-control" id="typ" placeholder="Typ" value="{{selectedWine.typ}}">
+            </div>
+            <div class="col">
+              <label for="land">Land</label>
+              <input type="text" class="form-control" id="land" placeholder="Land" value="{{selectedWine.land}}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="region">Region</label>
+              <input type="text" class="form-control" id="region" placeholder="Region" value="{{selectedWine.region}}">
+            </div>
+            <div class="col">
+              <label for="subRegion">SubRegion</label>
+              <input type="text" class="form-control" id="subRegion" placeholder="SubRegion" value="{{selectedWine.subRegion}}">
+            </div>
+            <div class="col">
+              <label for="appellation">Appellation</label>
+              <input type="text" class="form-control" id="appellation" placeholder="Appellation" value="{{selectedWine.appellation}}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>

@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalModule } from 'ngx-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { WineListComponent } from './wines/wine-list/wine-list.component';
@@ -19,10 +20,12 @@ import { WineDetailsComponent } from './wines/wine-details/wine-details.componen
     BrowserModule,
     FormsModule,
     HttpModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgbModule.forRoot()
   ],
   providers: [ WineService ],
-  bootstrap: [AppComponent,
-  WineListComponent]
+  bootstrap: [AppComponent
+  //, WineListComponent
+]
 })
 export class AppModule { }

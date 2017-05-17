@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Component, OnInit } from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Wine } from './../wine';
 import { WineService } from './../wine.service';
 
@@ -13,10 +13,10 @@ export class WineListComponent implements OnInit {
   selectedWine : Wine;
 
   constructor(
-    private wineService : WineService
+    private wineService : WineService,
+    private modalService: NgbModal
   ) { }
 
-  @ViewChild('childModal') public childModal:ModalDirective;
 
   getWines(): void {
     this.wineService.getWines().then(wines => this.wines = wines);
@@ -27,11 +27,28 @@ export class WineListComponent implements OnInit {
   onSelect(wine: Wine): void {
     this.selectedWine = wine;
     console.log("Vin: " + wine._id);
-    this.childModal.show();
+
   }
 
-  public hideChildModal():void {
-    this.childModal.hide();
+  closeResult: string;
+
+
+  open(content) {
+    this.modalService.open(content, {size: 'lg'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
 }
