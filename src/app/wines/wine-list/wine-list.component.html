@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<table class="table tab le-hover">
   <thead>
     <tr>
       <th>#</th>
@@ -33,6 +33,7 @@
     </tbody>
 </table>
 <ng-template #content let-c="close" let-d="dismiss">
+
   <div class="modal-header">
     <h4 class="modal-title">Vin id: {{selectedWine._id}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -85,6 +86,7 @@
         </div>
       </div>
     </form>
+    <app-wine-details [wine] = "selectedWine"></app-wine-details>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
